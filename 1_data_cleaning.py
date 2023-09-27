@@ -1,5 +1,6 @@
 
 """ data: https://www.gov.uk/government/publications/civil-marriages-and-partnerships-approved-premises-list """
+"""       https://osdatahub.os.uk/downloads/open/CodePointOpen  """
 
 
 from pandas_ods_reader import read_ods
@@ -9,7 +10,7 @@ from convertbng.util import convert_lonlat
 
 
 def postcode_lat_lon(postcode):
-    """ get exact latitude and lontitude of a postcode using OS 'Code-Point Open' data """
+    """ get exact latitude and lontitude of a postcode using OS Code-Point data """
     letters = ''
     northing, easting = None, None
     # get first letters of postcode
@@ -50,18 +51,21 @@ for row in df_venues.index:
 df_venues = df_venues.dropna(subset=['name'])
 df_venues = df_venues.reset_index()
           
-# split off postcodes from addresses and make new column
+# split off postcodes from addresses and send to new column
 df_venues['postcode'] = df_venues.apply(lambda row: ' '.join(row.address.split()[-2:]), axis = 1)
 df_venues['address'] = df_venues.apply(lambda row: ' '.join(row.address.split()[:-2]), axis = 1)
 df_venues = df_venues[['name', 'address', 'postcode', 'phone']]
 
-# add latitude and lontitude columns with postoffice data
+# add latitude and lontitude columns using Code-Point data
 df_venues["latitude"] = df_venues["postcode"].apply(lambda row: postcode_lat_lon(row)[0])
 df_venues["longitude"] = df_venues["postcode"].apply(lambda row: postcode_lat_lon(row)[1])
 
+# remove index digits from name column
+df_venues["name"] = df_venues["name"].apply(lambda row: ''.join(filter(lambda char: not char.isdigit(), row)))
+
 # check dataframe
-print(df_venues.head())
-print(df_venues.tail())
+print(df_venues.head(10))
+print(df_venues.tail(10))
 
 # save dataframe
 with open('pickled/df_venues.pkl', 'wb') as file:
