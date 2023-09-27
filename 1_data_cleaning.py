@@ -1,4 +1,6 @@
+
 """ data: https://www.gov.uk/government/publications/civil-marriages-and-partnerships-approved-premises-list """
+
 
 from pandas_ods_reader import read_ods
 import pickle
@@ -25,7 +27,7 @@ def postcode_lat_lon(postcode):
                     northing, easting = row[3], row[2]
     except:
         northing, easting = None, None
-    # convert OSGB36 to latitude and lontitude
+    # convert OSGB36 coordinates to latitude and lontitude
     lon, lat = [None], [None]
     if northing and easting:
         lon, lat = convert_lonlat([int(easting)],[int(northing)])    
