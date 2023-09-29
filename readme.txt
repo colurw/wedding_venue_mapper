@@ -5,7 +5,7 @@ https://www.gov.uk/government/publications/civil-marriages-and-partnerships-appr
 1_data_cleaning.py converts this spreadsheet into a Pandas dataframe, then cross references the 
 venue's postcode against OS CodePoint data to find its latitude and longitiude.  This enables the 
 calculation of the distance to the nearest station and airport, based their coordinates or 
-postcode respectivley.
+postcode respectively.
 
 2_draw_map.py filters the list of venues according to preference, and generates an interactive map 
 in the browser using Plotly and Open Street Map.
