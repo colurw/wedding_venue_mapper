@@ -6,7 +6,7 @@ with open('pickled/df_venues.pkl', 'rb') as file:
      df_venues = pickle.load(file)
 
 # search parameters
-SEARCH_TERMS = "farm|meadow| field|glebe|lea|marsh|park|tipi|tepee|canvas|yurt|holiday|festival|camp|outdoor|glamp"
+SEARCH_TERMS = "farm|meadow| field|glebe|lea|marsh|park|tipi|canvas|yurt|holiday|festival|camp|outdoor|glamp"
 DROP_TERMS = "holiday inn|hotel|golf"
 MAX_DIST_TO_STATION = 10
 MAX_DIST_TO_AIRPORT = 50

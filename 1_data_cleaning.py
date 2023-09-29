@@ -94,19 +94,19 @@ df_venues = df_venues.dropna(subset=['address'])
 df_venues = df_venues.reset_index()
 df_venues.drop('index', inplace=True, axis=1)
 
-# merge addresses split across two rows
+# merge any addresses that are wrapped into two rows
 for row in df_venues.index:
     if df_venues.name[row] == None and df_venues.phone[row] == None:
           df_venues.address[row-1] = str(df_venues.address[row-1])+' '+str(df_venues.address[row])
 df_venues = df_venues.dropna(subset=['name'])
 df_venues = df_venues.reset_index()
           
-# split off postcodes from addresses and send to new column
+# remove postcodes from addresses and send to new column
 df_venues['postcode'] = df_venues.apply(lambda row: ' '.join(row.address.split()[-2:]), axis = 1)
 df_venues['address'] = df_venues.apply(lambda row: ' '.join(row.address.split()[:-2]), axis = 1)
 df_venues = df_venues[['name', 'address', 'postcode', 'phone']]
 
-# add venue latitude and longitude
+# add latitude and longitude
 df_venues["latitude"] = df_venues["postcode"].apply(lambda row: postcode_lat_lon(row)[0])
 df_venues["longitude"] = df_venues["postcode"].apply(lambda row: postcode_lat_lon(row)[1])
 
