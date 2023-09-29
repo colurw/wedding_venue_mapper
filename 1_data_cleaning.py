@@ -64,7 +64,7 @@ def dist_to_station(postcode):
             dist = distance(lat1, lon1, lat2, lon2)
             if dist < max_dist:
                 max_dist = dist
-    return int(max_dist)
+    return int(max_dist) 
 
 
 def dist_to_airport(postcode):
