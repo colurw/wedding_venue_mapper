@@ -7,5 +7,5 @@ venue's postcode against OS CodePoint data to find its latitude and longitiude. 
 calculation of the distance to the nearest station and airport, based their coordinates or 
 postcode respectively.
 
-2_draw_map.py filters the list of venues according to preference, and generates an interactive map 
-in the browser using Plotly and Open Street Map.
+2_draw_map.py filters the list of venues according to input criteria, then generates an interactive 
+map in the browser using Plotly and Open Street Map.
