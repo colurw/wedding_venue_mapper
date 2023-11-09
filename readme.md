@@ -1,6 +1,6 @@
 # Wedding_Venue_Mapper 
 
-Searches for wedding venues based on name and geographic criteria. Based on the Approved Premises List, 
+Searches for licensed wedding venues based on name and geographic criteria. Based on the Approved Premises List, 
 available at https://www.gov.uk/government/publications/civil-marriages-and-partnerships-approved-premises-list 
 
 ## 1_data_cleaning.py 
